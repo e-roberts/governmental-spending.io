@@ -17,17 +17,41 @@
         <link href="css/styles.css" rel="stylesheet" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=1024, initial-scale=1.0">
+        
             <!-- Loading Data -->
             <script src="https://www.gstatic.com/charts/loader.js"></script>
             <script>
-                google.charts.load('current', {'packages':['corechart', 'geochart']});
-                google.charts.setOnLoadCallback(drawAllSheets);
-        
+                google.charts.load('current', {'packages':['corechart', 'geochart'],
+                'mapsApiKey': 'AIzaSyD51kMFDNPRa9X44IOOnt7qT2aLAy6SGBo'});
+                //google.charts.setOnLoadCallback(drawAllSheets);
+                google.charts.setOnLoadCallback(drawRegionsMap);
+
+            function drawRegionsMap() {
+                var data = google.visualization.arrayToDataTable([
+                ['Country'],
+                ['Australia'],
+                ['Argentina'],
+                ['Canada'],
+                ['China'],
+                ['France'],
+                ['Russia'],
+                ['Saudi Arabia'],
+                ['South Africa'],
+                ['United Kingdom'],
+                ['United States']
+            ]);
+
+                var options = {defaultColor: '#fed136'};
+
+                var chart = new google.visualization.GeoChart(document.getElementById('countries_div'));
+
+                chart.draw(data, options);
+            }
+                /*
                 function drawAllSheets() {
-                    drawSheetName('GDP', 'SELECT A,G', GDPresponsehandler);
-                
+                    drawSheetName('GDP', 'SELECT A,C,D,E,F,G', GDPresponsehandler);                
                 } ///drawAllSheets
-        
+                
                 function drawSheetName(sheetName, query, responseHandler){
                     var queryString = encodeURIComponent(query);
                     var query = new google.visualization.Query(
@@ -35,6 +59,23 @@
                         
                     query.send(responseHandler);
                 } //drawSheetName
+                
+                function GDPresponsehandler(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 5, desc: true});
+
+                    var options = {
+                        vAxis: {title: 'GDP in Billions ($)'},
+                        hAxis: {title: 'Country'}
+                };
+
+                    var chart = new google.visualization.ColumnChart(document.getElementById('GDP_div'));
+                    chart.draw(data, options);
+                } //GDPresponsehanlder
+                */
+               
+                /*
                 function checkError(response){
                     if(response.isError()) {
                         alert('Error in query; ' + response.getMessage() + ' ' + response.getDetailedMessage());
@@ -55,6 +96,7 @@
                     var chart = new google.visualization.GeoChart(document.getElementById('GDP-2019'));
                         chart.draw(data, options);
                 } // GDPresponsehandler
+                */
             </script>
     </head>
     <body id="page-top">
@@ -131,7 +173,12 @@
 
                 </div>
                 <br>
-                <div id="GDP-2019" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center">
+                    <h3 class="section-heading">Countries in the G20 Selected for Analysis</h3>
+                </div>
+                <br>
+                <div class="text-center" id="countries_div" style="width: 900px; height: 500px;"></div>
                 <br>
             </div>
         </section>
