@@ -18,7 +18,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=1024, initial-scale=1.0">
         
-            <!-- Loading Data -->
+            <!-- Data: Country Selection Map -->
             <script src="https://www.gstatic.com/charts/loader.js"></script>
             <script>
                 google.charts.load('current', {'packages':['corechart', 'geochart'],
@@ -40,13 +40,15 @@
                 ['United Kingdom'],
                 ['United States']
             ]);
-
                 var options = {defaultColor: '#fed136'};
-
                 var chart = new google.visualization.GeoChart(document.getElementById('countries_div'));
-
                 chart.draw(data, options);
             }
+            </script>
+
+            <!-- Healthcare Charts-->
+            <script>
+
                 /*
                 function drawAllSheets() {
                     drawSheetName('GDP', 'SELECT A,C,D,E,F,G', GDPresponsehandler);                
@@ -187,7 +189,11 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Healthcare Spending</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"> <a href="https://sdgs.un.org/goals">UN Sustainable Development Goal 3</a> is to "ensure healthy lives and promote
+                        well-being for all at all ages." Healthcare spending is more critical now than ever before, given the global 
+                        pandemic. With this goal in mind, the data visualizations below explores healthcare spending of our 10 selected 
+                        countries in the G20 from 2015 to 2019. 
+                    </h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
@@ -282,7 +288,11 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Education Spending</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"><a href="https://sdgs.un.org/goals">UN Sustainable Development Goal 4</a> is to
+                        "ensure inclusive and equitable quality education and promote lifelong learning opportunities for all." With this goal
+                        in mind, we will analyze education spending for our selected G20 countries from 2015 to 2019. As previously mentioned
+                        above, no recent data was available for Canada, China, or Saudi Arabia.
+                    </h3>
                 </div>
                 <ul class="timeline">
                     <li>
@@ -344,7 +354,11 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Military Spending</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h3 class="section-subheading text-muted"><a href="https://sdgs.un.org/goals">UN Sustainable Development Goal 16</a> is to
+                    "promote peaceful and inclusive societies for Sustainable Development, provide access to justice for all and build effective,
+                    accountable and inclusive institutions at all levels." With the goal of peace in mind, the visualizations below examine 
+                    military spending of our 10 selected countries in the G20 from 2015 to 2019.
+                    </h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
@@ -396,7 +410,8 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © Elise Roberts Scruggs 2021</div>
+                    <div class="col-lg-4 text-lg-left">
+                        Copyright © Elise Roberts Scruggs <script>var d = new Date(); document.write(d.getFullYear());</script>
                     </div>
                 </div>
             </div>
@@ -423,7 +438,7 @@
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
-                                        Close Project
+                                        Close Window
                                     </button>
                                 </div>
                             </div>
