@@ -15,6 +15,47 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=1024, initial-scale=1.0">
+            <!-- Loading Data -->
+            <script src="https://www.gstatic.com/charts/loader.js"></script>
+            <script>
+                google.charts.load('current', {'packages':['corechart', 'geochart']});
+                google.charts.setOnLoadCallback(drawAllSheets);
+        
+                function drawAllSheets() {
+                    drawSheetName('GDP', 'SELECT A,G', GDPresponsehandler);
+                
+                } ///drawAllSheets
+        
+                function drawSheetName(sheetName, query, responseHandler){
+                    var queryString = encodeURIComponent(query);
+                    var query = new google.visualization.Query(
+                        'https://docs.google.com/spreadsheets/d/11fINxyUR_8jFfbWUAsUOIP3AmcPm62pH/gviz/tq?sheet=' + sheetName + '&headers=1&tq=' + queryString);
+                        
+                    query.send(responseHandler);
+                } //drawSheetName
+                function checkError(response){
+                    if(response.isError()) {
+                        alert('Error in query; ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                        return;
+                    }
+                }//checkError
+
+                function GDPresponsehandler(response) {
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 2, desc: true});
+
+                    var options = {
+                        colorAxis: {colors: ['#28a745', '#6610f2']}, //green to blue
+                        title: 'GDP of Top 10 Countries in 2019 in US $ (Billions)'
+                };
+
+                    var chart = new google.visualization.GeoChart(document.getElementById('GDP-2019'));
+                        chart.draw(data, options);
+                } // GDPresponsehandler
+            </script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -89,6 +130,9 @@
                 <div>
 
                 </div>
+                <br>
+                <div id="GDP-2019" style="width: 900px; height: 500px;"></div>
+                <br>
             </div>
         </section>
         <!-- Health Spending-->
