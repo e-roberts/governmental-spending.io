@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
+        <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
@@ -20,12 +20,14 @@
         
             <!-- Data: Country Selection Map -->
             <script src="https://www.gstatic.com/charts/loader.js"></script>
+            
             <script>
                 google.charts.load('current', {'packages':['corechart', 'geochart'],
                 'mapsApiKey': 'AIzaSyD51kMFDNPRa9X44IOOnt7qT2aLAy6SGBo'});
                 //google.charts.setOnLoadCallback(drawAllSheets);
                 google.charts.setOnLoadCallback(drawRegionsMap);
 
+                
             function drawRegionsMap() {
                 var data = google.visualization.arrayToDataTable([
                 ['Country'],
@@ -48,7 +50,9 @@
 
             <!-- Healthcare Charts-->
             <script>
-
+                 google.charts.load('current', {'packages':['corechart', 'geochart'],
+                'mapsApiKey': 'AIzaSyD51kMFDNPRa9X44IOOnt7qT2aLAy6SGBo'});
+                google.charts.setOnLoadCallback(drawAllSheets); 
                 function drawAllSheets() {
                     drawSheetName('Health', 'SELECT A,C,D,E,F,G', HealthResponseHandler);                
                 } ///drawAllSheets
@@ -64,11 +68,11 @@
                 function HealthResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 5, desc: true});
+                    data.sort({column: 1, desc: true});
 
                     var options = {
                         vAxis: {title: 'Current Healthcare Expenditure (current USD)'},
-                        hAxis: {title: 'Country'}
+                        hAxis: {title: 'Country'},
                 };
 
                     var chart = new google.visualization.ColumnChart(document.getElementById('health_div'));
@@ -76,7 +80,7 @@
                 } //HealthResponseHandler
                 
                
-                /*
+                
                 function checkError(response){
                     if(response.isError()) {
                         alert('Error in query; ' + response.getMessage() + ' ' + response.getDetailedMessage());
@@ -97,7 +101,7 @@
                     var chart = new google.visualization.GeoChart(document.getElementById('GDP-2019'));
                         chart.draw(data, options);
                 } // GDPresponsehandler
-                */
+                
             </script>
     </head>
     <body id="page-top">
@@ -183,6 +187,13 @@
                 <br>
                 <div class="text-center" id="countries_div" style="width: 900px; height: 500px;"></div>
                 <br>
+                <br>
+                <div class="text-center">
+                    <h3 class="section-heading">GDP in 2019</h3>
+                </div>
+                <div class="text-center" id="GDP-2019" style="width: 900px; height: 500px;"></div>
+                <br>
+
             </div>
         </section>
         <!-- Health Spending-->
