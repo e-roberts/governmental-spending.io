@@ -21,7 +21,7 @@
             <!-- Data: Country Selection Map -->
             <script src="https://www.gstatic.com/charts/loader.js"></script>
             
-            <!-- Healthcare Charts-->
+            <!-- Google Visualization Charts-->
             <script>
                  google.charts.load('current', {'packages':['corechart', 'geochart'],
                 'mapsApiKey': 'AIzaSyD51kMFDNPRa9X44IOOnt7qT2aLAy6SGBo'});
@@ -29,6 +29,7 @@
                 function drawAllSheets() {
                     drawSheetName('GDP', 'SELECT A', CountriesResponseHandler)
                     drawSheetName('Health', 'SELECT A,C,D,E,F,G', HealthResponseHandler);
+                    drawSheetName('HealthPercGDP', 'SELECT B,C,D,E,F,G', HealthPercentGDPResponseHandler);
                                     
                 } ///drawAllSheets
                 
@@ -39,8 +40,16 @@
                         
                     query.send(responseHandler);
                 } //drawSheetName
+
+                //Error Handler:
+                function checkError(response){
+                    if(response.isError()) {
+                        alert('Error in query; ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                        return;
+                    }
+                }//checkError                
                 
-                //Selected Countries Map in Data
+                //Selected Countries Map in Data:
                 function CountriesResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
@@ -52,45 +61,39 @@
                 } //CountriesResponseHandler
 
 
-                //Healthcare Expenditure Overall
+                //Healthcare Expenditure Overall:
                 function HealthResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
                     data.sort({column: 1, desc: true});
 
                     var options = {
-                        vAxis: {title: 'Current Healthcare Expenditure in Billions (current USD)'},
+                        title: 'Healthcare Expenditure by Country in Billions (Current USD)',
+                        vAxis: {title: 'Current Healthcare Expenditure in Billions (current USD)', format: 'currency'},
                         hAxis: {title: 'Country'},
                 };
 
                     var chart = new google.visualization.ColumnChart(document.getElementById('health_div'));
                     chart.draw(data, options);
                 } //HealthResponseHandler
-                
-               
-                
-                function checkError(response){
-                    if(response.isError()) {
-                        alert('Error in query; ' + response.getMessage() + ' ' + response.getDetailedMessage());
-                        return;
-                    }
-                }//checkError
 
-                // GDP Maps
-                function GDPresponsehandler(response) {
+                //Healthcare Expenditure as a % of GDP:
+                function HealthPercentGDPResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 2, desc: true});
+                    data.sort({column: 1, desc: true});
 
                     var options = {
-                        colorAxis: {colors: ['#28a745', '#6610f2']}, //green to blue
-                        title: 'GDP of Top 10 Countries in 2019 in US $ (Billions)'
-                };
+                        title: 'Healthcare Expenditure as a Percent of GDP by Country',
+                        vAxis: {title: 'Percent of GDP Spent on Healthcare', format: 'percent'},
+                        hAxis: {title: 'Year'},
+                    };
 
-                    var chart = new google.visualization.GeoChart(document.getElementById('GDP-2019'));
-                        chart.draw(data, options);
-                } // GDPresponsehandler
-                
+                    var chart = new google.visualization.LineChart(document.getElementById('health_gdp_div'));
+                    chart.draw(data, options);
+
+                };//HealthPercentGDPResponseHandler
+                              
             </script>
     </head>
     <body id="page-top">
@@ -165,22 +168,12 @@
                         <p class="text-muted">Data from military spending was sourced from the Stockholm International Peace Research Institute <a href="https://www.sipri.org/databases/milex">(SIPRI).</a></p>
                     </div>
                 </div>
-                <div>
-
-                </div>
-                <br>
                 <br>
                 <div class="text-center">
                     <h3 class="section-heading">Countries in the G20 Selected for Analysis</h3>
                 </div>
                 <br>
                 <div class="text-center" id="countries_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <br>
-                <div class="text-center">
-                    <h3 class="section-heading">GDP in 2019</h3>
-                </div>
-                <div class="text-center" id="GDP-2019" style="width: 900px; height: 500px;"></div>
                 <br>
 
             </div>
@@ -199,7 +192,10 @@
                 <br>
                 <div class="text-center" id="health_div" style="width: 900px; height: 500px;"></div>
                 <br>
-
+                <br>
+                <br>
+                <div class="text-center" id="health_gdp_div" style="width: 900px; height: 500px;"></div>
+                <br>              
         <!-- Education Spending -->
         <section class="page-section" id="education">
             <div class="container">
