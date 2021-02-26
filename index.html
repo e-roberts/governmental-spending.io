@@ -21,40 +21,15 @@
             <!-- Data: Country Selection Map -->
             <script src="https://www.gstatic.com/charts/loader.js"></script>
             
-            <script>
-                google.charts.load('current', {'packages':['corechart', 'geochart'],
-                'mapsApiKey': 'AIzaSyD51kMFDNPRa9X44IOOnt7qT2aLAy6SGBo'});
-                //google.charts.setOnLoadCallback(drawAllSheets);
-                google.charts.setOnLoadCallback(drawRegionsMap);
-
-                
-            function drawRegionsMap() {
-                var data = google.visualization.arrayToDataTable([
-                ['Country'],
-                ['Australia'],
-                ['Argentina'],
-                ['Canada'],
-                ['China'],
-                ['France'],
-                ['Russia'],
-                ['Saudi Arabia'],
-                ['South Africa'],
-                ['United Kingdom'],
-                ['United States']
-            ]);
-                var options = {defaultColor: '#fed136'};
-                var chart = new google.visualization.GeoChart(document.getElementById('countries_div'));
-                chart.draw(data, options);
-            }
-            </script>
-
             <!-- Healthcare Charts-->
             <script>
                  google.charts.load('current', {'packages':['corechart', 'geochart'],
                 'mapsApiKey': 'AIzaSyD51kMFDNPRa9X44IOOnt7qT2aLAy6SGBo'});
                 google.charts.setOnLoadCallback(drawAllSheets); 
                 function drawAllSheets() {
-                    drawSheetName('Health', 'SELECT A,C,D,E,F,G', HealthResponseHandler);                
+                    drawSheetName('GDP', 'SELECT A', CountriesResponseHandler)
+                    drawSheetName('Health', 'SELECT A,C,D,E,F,G', HealthResponseHandler);
+                                    
                 } ///drawAllSheets
                 
                 function drawSheetName(sheetName, query, responseHandler){
@@ -65,13 +40,26 @@
                     query.send(responseHandler);
                 } //drawSheetName
                 
+                //Selected Countries Map in Data
+                function CountriesResponseHandler(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {defaultColor: '#fed136'};
+                    var chart = new google.visualization.GeoChart(document.getElementById('countries_div'));
+                    chart.draw(data, options);
+                } //CountriesResponseHandler
+
+
+                //Healthcare Expenditure Overall
                 function HealthResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
                     data.sort({column: 1, desc: true});
 
                     var options = {
-                        vAxis: {title: 'Current Healthcare Expenditure (current USD)'},
+                        vAxis: {title: 'Current Healthcare Expenditure in Billions (current USD)'},
                         hAxis: {title: 'Country'},
                 };
 
@@ -88,6 +76,7 @@
                     }
                 }//checkError
 
+                // GDP Maps
                 function GDPresponsehandler(response) {
                     checkError(response);
                     var data = response.getDataTable();
