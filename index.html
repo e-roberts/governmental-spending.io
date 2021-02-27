@@ -29,7 +29,11 @@
                 function drawAllSheets() {
                     drawSheetName('GDP', 'SELECT A', CountriesResponseHandler)
                     drawSheetName('Health', 'SELECT B,C,D,E,F,G', HealthResponseHandler);
+                    drawSheetName('Education', 'SELECT B,C,D,E,F,G', EduResponseHandler);
+                    drawSheetName('Military', 'SELECT B,C,D,E,F,G', MilResponseHandler);
                     drawSheetName('HealthPercentGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', HealthPercentGDPResponseHandler);
+                    drawSheetName('EducationPercGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', EduPercentGDPResponseHandler);
+                    drawSheetName('MilitaryPercGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', MilPercentGDPResponseHandler);
                     drawSheetName('HealthPerCap15', 'SELECT A,B,C', HealthPerCap15RH);
                     drawSheetName('HealthPerCap16', 'SELECT A,B,C', HealthPerCap16RH);          
                 } ///drawAllSheets
@@ -79,6 +83,40 @@
                     chart.draw(data, options);
                 } //HealthResponseHandler
 
+                //Education Expenditure Overall:
+                function EduResponseHandler(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Education Expenditure by Country in Millions (Current USD)',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Current Education Expenditure in Millions (current USD)', format: 'currency'},
+                        hAxis: {title: 'Country'},
+                };
+
+                    var chart = new google.visualization.ColumnChart(document.getElementById('edu_div'));
+                    chart.draw(data, options);
+                } //EduResponseHandler
+                
+                //Military Expenditure Overall:
+                function MilResponseHandler(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Military Expenditure by Country in Billions (Current USD)',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Current Education Expenditure in Billions (current USD)', format: 'currency'},
+                        hAxis: {title: 'Country'},
+                };
+
+                    var chart = new google.visualization.ColumnChart(document.getElementById('mil_div'));
+                    chart.draw(data, options);
+                } //MilResponseHandler
+
                 //Healthcare Expenditure as a % of GDP:
                 function HealthPercentGDPResponseHandler(response){
                     checkError(response);
@@ -96,6 +134,43 @@
                     chart.draw(data, options);
 
                 };//HealthPercentGDPResponseHandler
+
+                //Education Expenditure as a % of GDP:
+                function EduPercentGDPResponseHandler(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Education Expenditure as a Percent of GDP by Country',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Percent of GDP Spent on Education', format: 'percent'},
+                        hAxis: {title: 'Year', format: '####'},
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('edu_gdp_div'));
+                    chart.draw(data, options);
+
+                };//EduPercentGDPResponseHandler
+
+                //Military Expenditure as a % of GDP:
+                function MilPercentGDPResponseHandler(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Military Expenditure as a Percent of GDP by Country',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Percent of GDP Spent on the Military', format: 'percent'},
+                        hAxis: {title: 'Year', format: '####'},
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('mil_gdp_div'));
+                    chart.draw(data, options);
+
+                };//MilPercentGDPResponseHandler
+
 
                 //Healthcare Expenditure Per Capita vs. GDP Per Capita 2015:
                 /*
@@ -261,6 +336,12 @@
                         above, no recent data was available for Canada, China, or Saudi Arabia.
                     </h3>
                 </div>
+                <br>
+                <div class="text-center" id="edu_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <br>
+                <br>
+                <div class="text-center" id="edu_gdp_div" style="width: 900px; height: 500px;"></div>
             </div>
         </section>
         <!-- Military Spending -->
@@ -274,6 +355,15 @@
                     military spending of our 10 selected countries in the G20 from 2015 to 2019.
                     </h3>
                 </div>
+                <br>
+                <div class="text-center" id="mil_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <br>
+                <br>
+                <div class="text-center" id="mil_gdp_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <br>
+                <br>
                 <div class="row">
                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
                 </div>
