@@ -29,8 +29,9 @@
                 function drawAllSheets() {
                     drawSheetName('GDP', 'SELECT A', CountriesResponseHandler)
                     drawSheetName('Health', 'SELECT B,C,D,E,F,G', HealthResponseHandler);
-                    drawSheetName('HealthPercGDP', 'SELECT B,C,D,E,F,G', HealthPercentGDPResponseHandler);
-                                    
+                    drawSheetName('HealthPercentGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', HealthPercentGDPResponseHandler);
+                    drawSheetName('HealthPerCap15', 'SELECT A,B,C', HealthPerCap15RH);
+                    drawSheetName('HealthPerCap16', 'SELECT A,B,C', HealthPerCap16RH);          
                 } ///drawAllSheets
                 
                 function drawSheetName(sheetName, query, responseHandler){
@@ -69,7 +70,7 @@
 
                     var options = {
                         title: 'Healthcare Expenditure by Country in Billions (Current USD)',
-                        titleTextStyle: {fontSize: 20},
+                        titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Current Healthcare Expenditure in Billions (current USD)', format: 'currency'},
                         hAxis: {title: 'Country'},
                 };
@@ -86,16 +87,60 @@
 
                     var options = {
                         title: 'Healthcare Expenditure as a Percent of GDP by Country',
-                        titleTextStyle: {fontSize: 20},
+                        titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Percent of GDP Spent on Healthcare', format: 'percent'},
-                        hAxis: {title: 'Year', format: 'number'},
+                        hAxis: {title: 'Year', format: '####'},
                     };
 
                     var chart = new google.visualization.LineChart(document.getElementById('health_gdp_div'));
                     chart.draw(data, options);
 
                 };//HealthPercentGDPResponseHandler
-                              
+
+                //Healthcare Expenditure Per Capita vs. GDP Per Capita 2015:
+                /*
+                function change(){
+                    var listbox = document.getElementById("health_per_cap");
+                    var selIndex = listbox.selectedIndex;
+                    var selValue = listbox.options[selIndex].value;
+                    var selText = listbox.options[selIndex].text;
+                    console.log(selValue);
+                    google.charts.setOnLoadCallback(drawChart);
+                    */
+                    function HealthPerCap15RH(response){
+                        checkError(response);
+                        var data15 = response.getDataTable();
+                        data15.sort({column: 0, desc: true});
+
+                        var options15 = {
+                            title: '2015 Healthcare Expenditure Per Capita vs. 2015 GDP Per Capita',
+                            titleTextStyle: {fontSize: 18},
+                            vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
+                            hAxis: {title: 'GDP Per Capita', format: '$#,###'},
+                        };
+
+                        var chart = new google.visualization.ScatterChart(document.getElementById('health_percap_gdp_15_div'));
+                        chart.draw(data15, options15);
+
+                    };//HealthPerCap15RH
+
+                    //Healthcare Expenditure Per Capita vs. GDP Per Capita 2016:
+                    function HealthPerCap16RH(response){
+                        checkError(response);
+                        var data16 = response.getDataTable();
+                        data16.sort({column: 0, desc: true});
+
+                        var options16 = {
+                            title: '2016 Healthcare Expenditure Per Capita vs. 2016 GDP Per Capita',
+                            titleTextStyle: {fontSize: 18},
+                            vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
+                            hAxis: {title: 'GDP Per Capita', format: '$#,###'},
+                        };
+
+                        var chart = new google.visualization.ScatterChart(document.getElementById('health_percap_gdp_16_div'));
+                        chart.draw(data16, options16);
+
+                };//HealthPerCap15RH
             </script>
     </head>
     <body id="page-top">
@@ -197,7 +242,14 @@
                 <br>
                 <br>
                 <div class="text-center" id="health_gdp_div" style="width: 900px; height: 500px;"></div>
-                <br>              
+                <br>
+                <br>
+                <br>
+                <div class="text-center" id="health_percap_gdp_15_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <br>
+                <br>
+                <div class="text-center" id="health_percap_gdp_16_div" style="width: 900px; height: 500px;"></div>
         <!-- Education Spending -->
         <section class="page-section" id="education">
             <div class="container">
