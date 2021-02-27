@@ -28,7 +28,7 @@
                 google.charts.setOnLoadCallback(drawAllSheets); 
                 function drawAllSheets() {
                     drawSheetName('GDP', 'SELECT A', CountriesResponseHandler)
-                    drawSheetName('Health', 'SELECT A,C,D,E,F,G', HealthResponseHandler);
+                    drawSheetName('Health', 'SELECT B,C,D,E,F,G', HealthResponseHandler);
                     drawSheetName('HealthPercGDP', 'SELECT B,C,D,E,F,G', HealthPercentGDPResponseHandler);
                                     
                 } ///drawAllSheets
@@ -69,6 +69,7 @@
 
                     var options = {
                         title: 'Healthcare Expenditure by Country in Billions (Current USD)',
+                        titleTextStyle: {fontSize: 20},
                         vAxis: {title: 'Current Healthcare Expenditure in Billions (current USD)', format: 'currency'},
                         hAxis: {title: 'Country'},
                 };
@@ -81,12 +82,13 @@
                 function HealthPercentGDPResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 1, desc: true});
+                    data.sort({column: 0, desc: true});
 
                     var options = {
                         title: 'Healthcare Expenditure as a Percent of GDP by Country',
+                        titleTextStyle: {fontSize: 20},
                         vAxis: {title: 'Percent of GDP Spent on Healthcare', format: 'percent'},
-                        hAxis: {title: 'Year'},
+                        hAxis: {title: 'Year', format: 'number'},
                     };
 
                     var chart = new google.visualization.LineChart(document.getElementById('health_gdp_div'));
