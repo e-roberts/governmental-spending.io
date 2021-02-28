@@ -34,11 +34,11 @@
                     drawSheetName('HealthPercentGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', HealthPercentGDPResponseHandler);
                     drawSheetName('EducationPercGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', EduPercentGDPResponseHandler);
                     drawSheetName('MilitaryPercGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', MilPercentGDPResponseHandler);
-                    drawSheetName('HealthPerCap15', 'SELECT A,B,C', HealthPerCap15RH);
-                    drawSheetName('HealthPerCap16', 'SELECT A,B,C', HealthPerCap16RH);
-                    drawSheetName('HealthPerCap17', 'SELECT A,B,C', HealthPerCap17RH);
-                    drawSheetName('HealthPerCap18', 'SELECT A,B,C', HealthPerCap18RH);
-                    drawSheetName('HealthPerCap19', 'SELECT A,B,C', HealthPerCap19RH);
+                    drawSheetName('HealthPerCap15', 'SELECT A,B,C,D,E', HealthPerCap15RH);
+                    drawSheetName('HealthPerCap16', 'SELECT A,B,C,D,E', HealthPerCap16RH);
+                    drawSheetName('HealthPerCap17', 'SELECT A,B,C,D,E', HealthPerCap17RH);
+                    drawSheetName('HealthPerCap18', 'SELECT A,B,C,D,E', HealthPerCap18RH);
+                    drawSheetName('HealthPerCap19', 'SELECT A,B,C,D,E', HealthPerCap19RH);
                     drawSheetName('EduPerCap15', 'SELECT A,B,C', EduPerCap15RH);
                     drawSheetName('EduPerCap16', 'SELECT A,B,C', EduPerCap16RH);
                     drawSheetName('EduPerCap17', 'SELECT A,B,C', EduPerCap17RH);
@@ -49,6 +49,7 @@
                     drawSheetName('MilPerCap17', 'SELECT A,B,C', MilPerCap17RH);
                     drawSheetName('MilPerCap18', 'SELECT A,B,C', MilPerCap18RH);
                     drawSheetName('MilPerCap19', 'SELECT A,B,C', MilPerCap19RH);
+                    drawSheetName('HealthChange15', 'SELECT A,B,C', HealthChange15_16RH);
                 } ///drawAllSheets
                 
                 function drawSheetName(sheetName, query, responseHandler){
@@ -193,11 +194,12 @@
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
-                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###', ticks:[0,10000,20000,30000,40000,50000,60000,70000]},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks:[0,2000,4000,6000,8000,10000,12000]},                        
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_15_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('health_percap_gdp_15_div'));
                     chart.draw(data15, options);          
                 };//HealthPerCap15RH
 
@@ -210,11 +212,12 @@
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
-                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###', ticks:[0,10000,20000,30000,40000,50000,60000,70000]},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks:[0,2000,4000,6000,8000,10000,12000]},                        
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_16__div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('health_percap_gdp_16__div'));
                     chart.draw(data16, options);          
                 };
                 //Healthcare Expenditure Per Capita 2017 vs. GDP Per Capita 2017:
@@ -228,9 +231,10 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###'},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_17__div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('health_percap_gdp_17__div'));
                     chart.draw(data17, options);          
                 };
                 //Healthcare Expenditure Per Capita 2018 vs. GDP Per Capita 2018:
@@ -244,9 +248,11 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###'},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
+                        
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_18__div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('health_percap_gdp_18__div'));
                     chart.draw(data18, options);          
                 };
                 //Healthcare Expenditure Per Capita 2019 vs. GDP Per Capita 2019:
@@ -260,9 +266,10 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###'},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_19__div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('health_percap_gdp_19__div'));
                     chart.draw(data19, options);          
                 };
 
@@ -436,6 +443,24 @@
                     chart.draw(data19, options);          
                 };//MilPerCap19RH
 
+                //Healthcare Expenditure Change from 2015 to 2016:
+                function HealthChange15_16RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Healthcare Expenditure between 2015 and 2016',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                        hAxis: {title: 'Country'},
+                        //colors: ['red','orange','green','blue','purple'],
+                    };
+
+                    var chart = new google.visualization.BubbleChart(document.getElementById('health_change_15_16_div'));
+                    chart.draw(data, options);          
+                };//HealthChange15_16RH
+
                 </script>
 
     </head>
@@ -550,6 +575,11 @@
             <div class="text-center"  id="health_percap_gdp_18__div" style="width: 900px; height: 500px;"></div>
             <br>
             <div class="text-center"  id="health_percap_gdp_19__div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <br>
+            <br>
+            <div class="text-center" id="health_change_15_16_div" style="width: 900px; height: 500px;"></div>
+
         </section> 
         <!-- Education Spending -->
         <section class="page-section" id="education">
