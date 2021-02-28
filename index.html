@@ -59,6 +59,11 @@
                     drawSheetName('EducationChange', 'SELECT B,E', EduChange17_18RH);
                     drawSheetName('EducationChange', 'SELECT B,F', EduChange18_19RH);
                     drawSheetName('EducationChange', 'SELECT B,G', EduChange15_19RH);
+                    drawSheetName('MilitaryChange', 'SELECT B,C', MilChange15_16RH);
+                    drawSheetName('MilitaryChange', 'SELECT B,D', MilChange16_17RH);
+                    drawSheetName('MilitaryChange', 'SELECT B,E', MilChange17_18RH);
+                    drawSheetName('MilitaryChange', 'SELECT B,F', MilChange18_19RH);
+                    drawSheetName('MilitaryChange', 'SELECT B,G', MilChange15_19RH);
                 } ///drawAllSheets
                 
                 function drawSheetName(sheetName, query, responseHandler){
@@ -473,6 +478,7 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Country'},
                         hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
                     };
 
                     var chart = new google.visualization.BarChart(document.getElementById('health_change_15_16_div'));
@@ -490,6 +496,7 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Country'},
                         hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
                     };
 
                     var chart = new google.visualization.BarChart(document.getElementById('health_change_16_17_div'));
@@ -507,6 +514,7 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Country'},
                         hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
                     };
 
                     var chart = new google.visualization.BarChart(document.getElementById('health_change_17_18_div'));
@@ -524,6 +532,7 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Country'},
                         hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
                     };
 
                     var chart = new google.visualization.BarChart(document.getElementById('health_change_18_19_div'));
@@ -541,11 +550,192 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Country'},
                         hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
                     };
 
                     var chart = new google.visualization.BarChart(document.getElementById('health_change_15_19_div'));
                     chart.draw(data, options);          
                 };//HealthChange15_19RH
+
+                //Education Expenditure Change from 2015 to 2016:
+                function EduChange15_16RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Education Expenditure between 2015 and 2016',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Education Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_change_15_16_div'));
+                    chart.draw(data, options);          
+                };//EduChange15_16RH
+
+                //Education Expenditure Change from 2016 to 2017:
+                function EduChange16_17RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Education Expenditure between 2016 and 2017',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Education Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_change_16_17_div'));
+                    chart.draw(data, options);          
+                };//EduChange16_17RH
+
+                //Education Expenditure Change from 2017 to 2018:
+                function EduChange17_18RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Education Expenditure between 2017 and 2018',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Education Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_change_17_18_div'));
+                    chart.draw(data, options);          
+                };//EduChange17_18RH
+
+                //Education Expenditure Change from 2018 to 2019:
+                function EduChange18_19RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Education Expenditure between 2018 and 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Education Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_change_18_19_div'));
+                    chart.draw(data, options);          
+                };//EduChange18_19RH
+
+                //Education Expenditure Change from 2015 to 2019:
+                function EduChange15_19RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Education Expenditure between 2015 and 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Education Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_change_15_19_div'));
+                    chart.draw(data, options);          
+                };//EduChange15_19RH
+
+                //Military Expenditure Change from 2015 to 2016:
+                function MilChange15_16RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Military Expenditure between 2015 and 2016',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Military Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_change_15_16_div'));
+                    chart.draw(data, options);          
+                };//MilChange15_16RH
+
+                //Military Expenditure Change from 2016 to 2017:
+                function MilChange16_17RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Military Expenditure between 2016 and 2017',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Military Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_change_16_17_div'));
+                    chart.draw(data, options);          
+                };//MilChange16_17RH
+                
+                //Military Expenditure Change from 2017 to 2018:
+                function MilChange17_18RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Military Expenditure between 2017 and 2018',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Military Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_change_17_18_div'));
+                    chart.draw(data, options);          
+                };//MilChange17_18RH
+
+                //Military Expenditure Change from 2018 to 2019:
+                function MilChange18_19RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Military Expenditure between 2018 and 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Military Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_change_18_19_div'));
+                    chart.draw(data, options);          
+                };//MilChange18_19RH
+
+                //Military Expenditure Change from 2015 to 2019:
+                function MilChange15_19RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Military Expenditure between 2015 and 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Military Expenditure in Millions of USD', format: '$#,###'},
+                        legend: 'none',
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_change_15_19_div'));
+                    chart.draw(data, options);          
+                };//MilChange15_19RH
 
                 </script>
 
@@ -704,6 +894,18 @@
             <div class="text-center"  id="edu_percap_gdp_18_div" style="width: 900px; height: 500px;"></div>
             <br>
             <div class="text-center"  id="edu_percap_gdp_19_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <br>
+            <br>
+            <div class="text-center" id="edu_change_15_16_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center" id="edu_change_16_17_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center" id="edu_change_17_18_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center" id="edu_change_18_19_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center" id="edu_change_15_19_div" style="width: 900px; height: 500px;"></div>
         </div>
         </section>
         <!-- Military Spending -->
@@ -735,6 +937,18 @@
                 <div class="text-center"  id="mil_percap_gdp_18_div" style="width: 900px; height: 500px;"></div>
                 <br>
                 <div class="text-center"  id="mil_percap_gdp_19_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <br>
+                <br>
+                <div class="text-center" id="mil_change_15_16_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center" id="mil_change_16_17_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center" id="mil_change_17_18_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center" id="mil_change_18_19_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center" id="mil_change_15_19_div" style="width: 900px; height: 500px;"></div>
         </section>
         <!-- Comparative Analysis -->
         <section class="page-section" id="analysis">
