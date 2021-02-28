@@ -50,6 +50,15 @@
                     drawSheetName('MilPerCap18', 'SELECT A,B,C,D,E', MilPerCap18RH);
                     drawSheetName('MilPerCap19', 'SELECT A,B,C,D,E', MilPerCap19RH);
                     drawSheetName('HealthChange', 'SELECT B,C', HealthChange15_16RH);
+                    drawSheetName('HealthChange', 'SELECT B,D', HealthChange16_17RH);
+                    drawSheetName('HealthChange', 'SELECT B,E', HealthChange17_18RH);
+                    drawSheetName('HealthChange', 'SELECT B,F', HealthChange18_19RH);
+                    drawSheetName('HealthChange', 'SELECT B,G', HealthChange15_19RH);
+                    drawSheetName('EducationChange', 'SELECT B,C', EduChange15_16RH);
+                    drawSheetName('EducationChange', 'SELECT B,D', EduChange16_17RH);
+                    drawSheetName('EducationChange', 'SELECT B,E', EduChange17_18RH);
+                    drawSheetName('EducationChange', 'SELECT B,F', EduChange18_19RH);
+                    drawSheetName('EducationChange', 'SELECT B,G', EduChange15_19RH);
                 } ///drawAllSheets
                 
                 function drawSheetName(sheetName, query, responseHandler){
@@ -464,12 +473,79 @@
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Country'},
                         hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
-                        //colors: ['red','orange','green','blue','purple'],
                     };
 
                     var chart = new google.visualization.BarChart(document.getElementById('health_change_15_16_div'));
                     chart.draw(data, options);          
                 };//HealthChange15_16RH
+                
+                //Healthcare Expenditure Change from 2016 to 2017:
+                function HealthChange16_17RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Healthcare Expenditure between 2016 and 2017',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('health_change_16_17_div'));
+                    chart.draw(data, options);          
+                };//HealthChange16_17RH
+
+                //Healthcare Expenditure Change from 2017 to 2018:
+                function HealthChange17_18RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Healthcare Expenditure between 2017 and 2018',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('health_change_17_18_div'));
+                    chart.draw(data, options);          
+                };//HealthChange17_18RH
+
+                //Healthcare Expenditure Change from 2018 to 2019:
+                function HealthChange18_19RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Healthcare Expenditure between 2018 and 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('health_change_18_19_div'));
+                    chart.draw(data, options);          
+                };//HealthChange18_19RH
+
+                //Healthcare Expenditure Change from 2015 to 2019:
+                function HealthChange15_19RH(response){
+                    checkError(response);
+                    var data = response.getDataTable();
+                    data.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Absolute Change in Healthcare Expenditure between 2015 and 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('health_change_15_19_div'));
+                    chart.draw(data, options);          
+                };//HealthChange15_19RH
 
                 </script>
 
@@ -589,6 +665,14 @@
             <br>
             <br>
             <div class="text-center" id="health_change_15_16_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center" id="health_change_16_17_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center" id="health_change_17_18_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center" id="health_change_18_19_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center" id="health_change_15_19_div" style="width: 900px; height: 500px;"></div>            
 
         </section> 
         <!-- Education Spending -->
