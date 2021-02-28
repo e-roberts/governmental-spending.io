@@ -34,6 +34,21 @@
                     drawSheetName('HealthPercentGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', HealthPercentGDPResponseHandler);
                     drawSheetName('EducationPercGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', EduPercentGDPResponseHandler);
                     drawSheetName('MilitaryPercGDP', 'SELECT A,B,C,D,E,F,G,H,I,J,K', MilPercentGDPResponseHandler);
+                    drawSheetName('HealthPerCap15', 'SELECT A,B,C', HealthPerCap15RH);
+                    drawSheetName('HealthPerCap16', 'SELECT A,B,C', HealthPerCap16RH);
+                    drawSheetName('HealthPerCap17', 'SELECT A,B,C', HealthPerCap17RH);
+                    drawSheetName('HealthPerCap18', 'SELECT A,B,C', HealthPerCap18RH);
+                    drawSheetName('HealthPerCap19', 'SELECT A,B,C', HealthPerCap19RH);
+                    drawSheetName('EduPerCap15', 'SELECT A,B,C', EduPerCap15RH);
+                    drawSheetName('EduPerCap16', 'SELECT A,B,C', EduPerCap16RH);
+                    drawSheetName('EduPerCap17', 'SELECT A,B,C', EduPerCap17RH);
+                    drawSheetName('EduPerCap18', 'SELECT A,B,C', EduPerCap18RH);
+                    drawSheetName('EduPerCap19', 'SELECT A,B,C', EduPerCap19RH);
+                    drawSheetName('MilPerCap15', 'SELECT A,B,C', MilPerCap15RH);
+                    drawSheetName('MilPerCap16', 'SELECT A,B,C', MilPerCap16RH);
+                    drawSheetName('MilPerCap17', 'SELECT A,B,C', MilPerCap17RH);
+                    drawSheetName('MilPerCap18', 'SELECT A,B,C', MilPerCap18RH);
+                    drawSheetName('MilPerCap19', 'SELECT A,B,C', MilPerCap19RH);
                 } ///drawAllSheets
                 
                 function drawSheetName(sheetName, query, responseHandler){
@@ -168,151 +183,261 @@
                     chart.draw(data, options);
 
                 };//MilPercentGDPResponseHandler
-                </script>
-
-                <script>
-                    google.charts.load('current', {'packages':['corechart', 'geochart'],
-                    'mapsApiKey': 'AIzaSyD51kMFDNPRa9X44IOOnt7qT2aLAy6SGBo'});
-                    google.charts.setOnLoadCallback(drawAllSheets); 
-                
-                    function drawAllSheets() {
-                    drawSheetName('HealthPerCap15', 'SELECT A,B,C', HealthPerCap15RH);
-                    drawSheetName('HealthPerCap16', 'SELECT A,B,C', HealthPerCap16RH);
-                    drawSheetName('HealthPerCap17', 'SELECT A,B,C', HealthPerCap17RH);
-                    drawSheetName('HealthPerCap18', 'SELECT A,B,C', HealthPerCap18RH);
-                    drawSheetName('HealthPerCap19', 'SELECT A,B,C', HealthPerCap19RH);
-                    } //Draw Sheets
-
-                    var dataCap = '2015';
-
-                    function dontUseThisDataCap(){
-                        dataCap = document.getElementById("selectedYear").value;
-                        drawChart();
-                    }
-
-                    function changeDataCap(){
-                        dataCap = document.getElementById("selectedYear").value;
-                        drawChart();
-                    }
-
-
-                    function drawSheetName(sheetName, query, responseHandler){
-                    var queryString = encodeURIComponent(query);
-                    var query = new google.visualization.Query(
-                        'https://docs.google.com/spreadsheets/d/11fINxyUR_8jFfbWUAsUOIP3AmcPm62pH/gviz/tq?sheet=' + sheetName + '&headers=1&tq=' + queryString);
-                        
-                    query.send(responseHandler);
-                } //drawSheetName
 
                 //Healthcare Expenditure Per Capita vs. GDP Per Capita 2015:
-                /*
-                function change(){
-                    var listbox = document.getElementById("health_per_cap");
-                    var selIndex = listbox.selectedIndex;
-                    var selValue = listbox.options[selIndex].value;
-                    var selText = listbox.options[selIndex].text;
-                    console.log(selValue);
-                    google.charts.setOnLoadCallback(drawChart);
+                function HealthPerCap15RH(response){
+                    checkError(response);
+                    var data15 = response.getDataTable();
+                    data15.sort({column: 0, desc: true});
 
-                    
-                        function drawgraph(index){  
-                            if(index==0){
-                            document.getElementById('health_percap_gdp_15_div');
-                            google.charts.setOnLoadCallback(drawChart('health_percap_gdp_15_div'));
-                            }
-                            if(index==1){
-                            google.charts.setOnLoadCallback(drawChart('health_percap_gdp_16_div'));
-                            }
-                            if(index==2){
-                            google.charts.setOnLoadCallback(drawChart('health_percap_gdp_17_div'));
-                            }
-                            if(index==3){
-                            google.charts.setOnLoadCallback(drawChart('health_percap_gdp_18_div'));
-                            }
-                            if(index==4){
-                            google.charts.setOnLoadCallback(drawChart('health_percap_gdp_19_div'));
-                            }
-
-                            var chart = new google.charts.Bar(document.getElementById('chart_div'));
-
-
-                            var menu = document.getElementById('menu');
-                            menu.addEventListener('change', drawChart, false);
-
-                        }
-
-                    */
-                function dataCap(){
-                    var selected = document.getElementById("selected2").value;
-                    document.getElementById('show').innerHTML = "You have selected data from " + selected;
-
-                    var selectedDataTable = dataTables[selected];
-                    chart.draw(selectedDataTable, options);
-                }
-
-                function drawChart(){
-                    //Healthcare Expenditure Per Capita vs. GDP Per Capita 2015:
-                    function HealthPerCap15RH(response){
-                        checkError(response);
-                        var data15 = response.getDataTable();
-                        data15.sort({column: 0, desc: true});
-                    };//HealthPerCap15RH
-
-                    //Healthcare Expenditure Per Capita vs. GDP Per Capita 2016:
-                    function HealthPerCap16RH(response){
-                        checkError(response);
-                        var data16 = response.getDataTable();
-                        data16.sort({column: 0, desc: true});
-                    };
-                    //Healthcare Expenditure Per Capita vs. GDP Per Capita 2017:
-                    function HealthPerCap17RH(response){
-                        checkError(response);
-                        var data17 = response.getDataTable();
-                        data17.sort({column: 0, desc: true});  
-                    };
-                    //Healthcare Expenditure Per Capita vs. GDP Per Capita 2086:
-                    function HealthPerCap18RH(response){
-                        checkError(response);
-                        var data18 = response.getDataTable();
-                        data18.sort({column: 0, desc: true});
-                    };
-                    //Healthcare Expenditure Per Capita vs. GDP Per Capita 2019:
-                    function HealthPerCap19RH(response){
-                        checkError(response);
-                        var data19 = response.getDataTable();
-                        data19.sort({column: 0, desc: true});
-                    };
-
-                    dataTables = {
-                        '2015': data15,
-                        '2016': data16,
-                        '2017': data17,
-                        '2018': data18,
-                        '2019': data19
-                    };
-                    var selectedDataTable = data15;
-
-                    var columns = [];
-                    var series = {};
-                    current = data15;
-                    for (var i = 0; i <selectedDataTable.getNumberOfColumns(); i++){
-                        columns.push(i);
-                    };
-                    var series = {
-                        0: {color: 'yellow', static: 'red', lineWidth: 5},
-                        1: {color: 'blue', static: 'green', lineWidth: 4},
-                    };
                     var options = {
-                        title: 'Healthcare Expenditure Per Capita vs. GDP Per Capita',
+                        title: 'Healthcare Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_15_div'));
+                    chart.draw(data15, options);          
+                };//HealthPerCap15RH
+
+                //Healthcare Expenditure Per Capita vs. GDP Per Capita 2016:
+                function HealthPerCap16RH(response){
+                    checkError(response);
+                    var data16 = response.getDataTable();
+                    data16.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Healthcare Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_16__div'));
+                    chart.draw(data16, options);          
+                };
+                //Healthcare Expenditure Per Capita 2017 vs. GDP Per Capita 2017:
+                function HealthPerCap17RH(response){
+                    checkError(response);
+                    var data17 = response.getDataTable();
+                    data17.sort({column: 0, desc: true}); 
+                    
+                    var options = {
+                        title: 'Healthcare Expenditure Per Capita 2017 vs. GDP Per Capita 2017',
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###'},
                     };
 
-                    var chart = new google.visualization.ScatterChart(document.getElementById('health_percap_gdp_div'));
-                    chart.draw(selectedDataTable, options);                   
-                    };//Health Per Capita vs. GDP Per Capita Selected Charts
-            </script>
+                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_17__div'));
+                    chart.draw(data17, options);          
+                };
+                //Healthcare Expenditure Per Capita 2018 vs. GDP Per Capita 2018:
+                function HealthPerCap18RH(response){
+                    checkError(response);
+                    var data18 = response.getDataTable();
+                    data18.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Healthcare Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###'},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_18__div'));
+                    chart.draw(data18, options);          
+                };
+                //Healthcare Expenditure Per Capita 2019 vs. GDP Per Capita 2019:
+                function HealthPerCap19RH(response){
+                    checkError(response);
+                    var data19 = response.getDataTable();
+                    data19.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Healthcare Expenditure Per Capita 2019 vs. GDP Per Capita 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###'},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('health_percap_gdp_19__div'));
+                    chart.draw(data19, options);          
+                };
+
+                //Education Expenditure Per Capita vs. GDP Per Capita 2015:
+                function EduPerCap15RH(response){
+                    checkError(response);
+                    var data15 = response.getDataTable();
+                    data15.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Education Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_15_div'));
+                    chart.draw(data15, options);          
+                };//EduPerCap15RH
+
+                //Education Expenditure Per Capita vs. GDP Per Capita 2016:
+                function EduPerCap16RH(response){
+                    checkError(response);
+                    var data16 = response.getDataTable();
+                    data16.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Education Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_16_div'));
+                    chart.draw(data16, options);          
+                };//EduPerCap16RH
+
+                //Education Expenditure Per Capita vs. GDP Per Capita 2017:
+                function EduPerCap17RH(response){
+                    checkError(response);
+                    var data17 = response.getDataTable();
+                    data17.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Education Expenditure Per Capita 2017 vs. GDP Per Capita 2017',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_17_div'));
+                    chart.draw(data17, options);          
+                };//EduPerCap17RH
+
+                //Education Expenditure Per Capita vs. GDP Per Capita 2018:
+                function EduPerCap18RH(response){
+                    checkError(response);
+                    var data18 = response.getDataTable();
+                    data18.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Education Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_18_div'));
+                    chart.draw(data18, options);          
+                };//EduPerCap18RH
+
+                //Education Expenditure Per Capita vs. GDP Per Capita 2019:
+                function EduPerCap19RH(response){
+                    checkError(response);
+                    var data19 = response.getDataTable();
+                    data19.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Education Expenditure Per Capita 2019 vs. GDP Per Capita 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_19_div'));
+                    chart.draw(data19, options);          
+                };//EduPerCap19RH
+
+                //Military Expenditure Per Capita vs. GDP Per Capita 2015:
+                function MilPerCap15RH(response){
+                    checkError(response);
+                    var data15 = response.getDataTable();
+                    data15.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Military Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_15_div'));
+                    chart.draw(data15, options);          
+                };//MilPerCap15RH
+
+                //Military Expenditure Per Capita vs. GDP Per Capita 2016:
+                function MilPerCap16RH(response){
+                    checkError(response);
+                    var data16 = response.getDataTable();
+                    data16.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Military Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_16_div'));
+                    chart.draw(data16, options);          
+                };//MilPerCap16RH
+
+                //Military Expenditure Per Capita vs. GDP Per Capita 2017:
+                function MilPerCap17RH(response){
+                    checkError(response);
+                    var data17 = response.getDataTable();
+                    data17.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Military Expenditure Per Capita 2017 vs. GDP Per Capita 2017',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_17_div'));
+                    chart.draw(data17, options);          
+                };//MilPerCap17RH
+
+                //Military Expenditure Per Capita vs. GDP Per Capita 2018:
+                function MilPerCap18RH(response){
+                    checkError(response);
+                    var data18 = response.getDataTable();
+                    data18.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Military Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_18_div'));
+                    chart.draw(data18, options);          
+                };//MilPerCap18RH
+
+                //Military Expenditure Per Capita vs. GDP Per Capita 2019:
+                function MilPerCap19RH(response){
+                    checkError(response);
+                    var data19 = response.getDataTable();
+                    data19.sort({column: 0, desc: true});
+
+                    var options = {
+                        title: 'Military Expenditure Per Capita 2019 vs. GDP Per Capita 2019',
+                        titleTextStyle: {fontSize: 18},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_19_div'));
+                    chart.draw(data19, options);          
+                };//MilPerCap19RH
+
+                </script>
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -407,41 +532,24 @@
                         countries in the G20 from 2015 to 2019. 
                     </h3>
                 </div>
-                <br>
-                <div class="text-center" id="health_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <br>
-                <br>
-                <div class="text-center" id="health_gdp_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <br>
-                <br>
-                <div class="text-center" id="health_percap_gdp_15_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <br>
-                <div class="text-center"  id="health_percap_gdp_div" style="width: 900px; height: 500px;"></div>
-                <br>
-
-                <select id="selected2" onchange=drawgraph(this.selectedDataTable)>
-                    <option value = "2015" selected>2015</option>
-                    <option value = "2016">2016</option>
-                    <option value = "2017">2017</option>
-                    <option value = "2018">2018</option>
-                    <option value = "2019">2019</option>
-                </select>
-                    
-                <div id="health_percap_gdp_15_div" style="width: 900px; height: 500px;"></div>
-                <div id="health_percap_gdp_16_div" style="width: 900px; height: 500px;"></div>
-                <div id="health_percap_gdp_17_div" style="width: 900px; height: 500px;"></div>
-                <div id="health_percap_gdp_18_div" style="width: 900px; height: 500px;"></div>
-                <div id="health_percap_gdp_19_div" style="width: 900px; height: 500px;"></div>
-
-                <div class="text-center">
-                    <div id="health_year"></div>
-                    <button class="btn btn-primary btn-xl text-uppercase" id="health_year" type="button">Select Year</button>
-                        <div class="text-center" id="health_gdp_div" style="width: 900px; height: 500px;">2015</div>
-                        <div class="text-center" id="health_percap_gdp_16_div" style="width: 900px; height: 500px;">2016</div>               
-                </div>
+            <br>
+            <div class="text-center" id="health_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <br>
+            <br>
+            <div class="text-center" id="health_gdp_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <br>
+            <br>
+            <div class="text-center" id="health_percap_gdp_15_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center"  id="health_percap_gdp_16__div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center"  id="health_percap_gdp_17__div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center"  id="health_percap_gdp_18__div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center"  id="health_percap_gdp_19__div" style="width: 900px; height: 500px;"></div>
         </section> 
         <!-- Education Spending -->
         <section class="page-section" id="education">
@@ -454,18 +562,25 @@
                         above, no recent data was available for Canada, China, or Saudi Arabia.
                     </h3>
                 </div>
-                <br>
-                <div class="text-center" id="edu_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <br>
-                <br>
-                <div class="text-center" id="edu_gdp_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center">
-                    <div id="success"></div>
-                    <button class="btn btn-primary btn-xl text-uppercase" id="edu_year" type="button">Select Year</button>
-                </div>
-            </div>
+            <br>
+            <div class="text-center" id="edu_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <br>
+            <br>
+            <div class="text-center" id="edu_gdp_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <br>
+            <br>
+            <div class="text-center" id="edu_percap_gdp_15_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center"  id="edu_percap_gdp_16_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center"  id="edu_percap_gdp_17_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center"  id="edu_percap_gdp_18_div" style="width: 900px; height: 500px;"></div>
+            <br>
+            <div class="text-center"  id="edu_percap_gdp_19_div" style="width: 900px; height: 500px;"></div>
+        </div>
         </section>
         <!-- Military Spending -->
         <section class="page-section bg-light" id="military">
@@ -487,10 +602,15 @@
                 <br>
                 <br>
                 <br>
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
-                </div>
-            </div>
+                <div class="text-center" id="mil_percap_gdp_15_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center"  id="mil_percap_gdp_16_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center"  id="mil_percap_gdp_17_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center"  id="mil_percap_gdp_18_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center"  id="mil_percap_gdp_19_div" style="width: 900px; height: 500px;"></div>
         </section>
         <!-- Comparative Analysis -->
         <section class="page-section" id="analysis">
@@ -499,6 +619,10 @@
                     <h2 class="section-heading text-uppercase">Comparative Analysis</h2>
                     <h3 class="section-subheading text-muted">Comparing health, education and military spending.</h3>
                 </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+                </div>
+            </div>
         </section>
         
         <!-- Footer-->
