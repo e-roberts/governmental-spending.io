@@ -39,17 +39,17 @@
                     drawSheetName('HealthPerCap17', 'SELECT A,B,C,D,E', HealthPerCap17RH);
                     drawSheetName('HealthPerCap18', 'SELECT A,B,C,D,E', HealthPerCap18RH);
                     drawSheetName('HealthPerCap19', 'SELECT A,B,C,D,E', HealthPerCap19RH);
-                    drawSheetName('EduPerCap15', 'SELECT A,B,C', EduPerCap15RH);
-                    drawSheetName('EduPerCap16', 'SELECT A,B,C', EduPerCap16RH);
-                    drawSheetName('EduPerCap17', 'SELECT A,B,C', EduPerCap17RH);
-                    drawSheetName('EduPerCap18', 'SELECT A,B,C', EduPerCap18RH);
-                    drawSheetName('EduPerCap19', 'SELECT A,B,C', EduPerCap19RH);
-                    drawSheetName('MilPerCap15', 'SELECT A,B,C', MilPerCap15RH);
-                    drawSheetName('MilPerCap16', 'SELECT A,B,C', MilPerCap16RH);
-                    drawSheetName('MilPerCap17', 'SELECT A,B,C', MilPerCap17RH);
-                    drawSheetName('MilPerCap18', 'SELECT A,B,C', MilPerCap18RH);
-                    drawSheetName('MilPerCap19', 'SELECT A,B,C', MilPerCap19RH);
-                    drawSheetName('HealthChange15', 'SELECT A,B,C', HealthChange15_16RH);
+                    drawSheetName('EduPerCap15', 'SELECT A,B,C,D,E', EduPerCap15RH);
+                    drawSheetName('EduPerCap16', 'SELECT A,B,C,D,E', EduPerCap16RH);
+                    drawSheetName('EduPerCap17', 'SELECT A,B,C,D,E', EduPerCap17RH);
+                    drawSheetName('EduPerCap18', 'SELECT A,B,C,D,E', EduPerCap18RH);
+                    drawSheetName('EduPerCap19', 'SELECT A,B,C,D,E', EduPerCap19RH);
+                    drawSheetName('MilPerCap15', 'SELECT A,B,C,D,E', MilPerCap15RH);
+                    drawSheetName('MilPerCap16', 'SELECT A,B,C,D,E', MilPerCap16RH);
+                    drawSheetName('MilPerCap17', 'SELECT A,B,C,D,E', MilPerCap17RH);
+                    drawSheetName('MilPerCap18', 'SELECT A,B,C,D,E', MilPerCap18RH);
+                    drawSheetName('MilPerCap19', 'SELECT A,B,C,D,E', MilPerCap19RH);
+                    drawSheetName('HealthChange', 'SELECT B,C', HealthChange15_16RH);
                 } ///drawAllSheets
                 
                 function drawSheetName(sheetName, query, responseHandler){
@@ -194,8 +194,8 @@
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###', ticks:[0,10000,20000,30000,40000,50000,60000,70000]},
-                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks:[0,2000,4000,6000,8000,10000,12000]},                        
+                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###', ticks:[0,2000,4000,6000,8000,10000,12000]},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks:[0,10000,20000,30000,40000,50000,60000,70000]},                        
                         sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
@@ -212,8 +212,8 @@
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###', ticks:[0,10000,20000,30000,40000,50000,60000,70000]},
-                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks:[0,2000,4000,6000,8000,10000,12000]},                        
+                        vAxis: {title: 'Healthcare Expenditure Per Capita', format: '$#,###', ticks:[0,2000,4000,6000,8000,10000,12000]},
+                        hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks:[0,10000,20000,30000,40000,50000,60000,70000]},                        
                         sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
@@ -282,11 +282,12 @@
                     var options = {
                         title: 'Education Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###', ticks: [0,5000,10000,15000,20000,25000,30000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},                        
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_15_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('edu_percap_gdp_15_div'));
                     chart.draw(data15, options);          
                 };//EduPerCap15RH
 
@@ -299,11 +300,12 @@
                     var options = {
                         title: 'Education Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###', ticks: [0,5000,10000,15000,20000,25000,30000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_16_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('edu_percap_gdp_16_div'));
                     chart.draw(data16, options);          
                 };//EduPerCap16RH
 
@@ -316,11 +318,12 @@
                     var options = {
                         title: 'Education Expenditure Per Capita 2017 vs. GDP Per Capita 2017',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###', ticks: [0,5000,10000,15000,20000,25000,30000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_17_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('edu_percap_gdp_17_div'));
                     chart.draw(data17, options);          
                 };//EduPerCap17RH
 
@@ -333,11 +336,12 @@
                     var options = {
                         title: 'Education Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###', ticks: [0,5000,10000,15000,20000,25000,30000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},                        
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_18_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('edu_percap_gdp_18_div'));
                     chart.draw(data18, options);          
                 };//EduPerCap18RH
 
@@ -350,11 +354,12 @@
                     var options = {
                         title: 'Education Expenditure Per Capita 2019 vs. GDP Per Capita 2019',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Education Expenditure Per Capita', format: '$#,###', ticks: [0,5000,10000,15000,20000,25000,30000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('edu_percap_gdp_19_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('edu_percap_gdp_19_div'));
                     chart.draw(data19, options);          
                 };//EduPerCap19RH
 
@@ -367,11 +372,12 @@
                     var options = {
                         title: 'Military Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###', ticks: [0,500,1000,1500,2000,2500,3000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_15_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('mil_percap_gdp_15_div'));
                     chart.draw(data15, options);          
                 };//MilPerCap15RH
 
@@ -384,11 +390,12 @@
                     var options = {
                         title: 'Military Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###', ticks: [0,500,1000,1500,2000,2500,3000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_16_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('mil_percap_gdp_16_div'));
                     chart.draw(data16, options);          
                 };//MilPerCap16RH
 
@@ -401,11 +408,12 @@
                     var options = {
                         title: 'Military Expenditure Per Capita 2017 vs. GDP Per Capita 2017',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###', ticks: [0,500,1000,1500,2000,2500,3000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_17_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('mil_percap_gdp_17_div'));
                     chart.draw(data17, options);          
                 };//MilPerCap17RH
 
@@ -418,11 +426,12 @@
                     var options = {
                         title: 'Military Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###', ticks: [0,500,1000,1500,2000,2500,3000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_18_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('mil_percap_gdp_18_div'));
                     chart.draw(data18, options);          
                 };//MilPerCap18RH
 
@@ -435,11 +444,12 @@
                     var options = {
                         title: 'Military Expenditure Per Capita 2019 vs. GDP Per Capita 2019',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###'},
+                        vAxis: {title: 'Military Expenditure Per Capita', format: '$#,###', ticks: [0,500,1000,1500,2000,2500,3000]},
                         hAxis: {title: 'GDP Per Capita', format: '$#,###', ticks: [0, 10000, 20000, 30000, 40000, 50000, 60000, 70000]},
+                        sizeAxis: {minValue: 0,  maxSize: 40},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('mil_percap_gdp_19_div'));
+                    var chart = new google.visualization.BubbleChart(document.getElementById('mil_percap_gdp_19_div'));
                     chart.draw(data19, options);          
                 };//MilPerCap19RH
 
@@ -452,12 +462,12 @@
                     var options = {
                         title: 'Absolute Change in Healthcare Expenditure between 2015 and 2016',
                         titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
-                        hAxis: {title: 'Country'},
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Absolute Change in Healthcare Expenditure in Millions of USD', format: '$#,###'},
                         //colors: ['red','orange','green','blue','purple'],
                     };
 
-                    var chart = new google.visualization.BubbleChart(document.getElementById('health_change_15_16_div'));
+                    var chart = new google.visualization.BarChart(document.getElementById('health_change_15_16_div'));
                     chart.draw(data, options);          
                 };//HealthChange15_16RH
 
