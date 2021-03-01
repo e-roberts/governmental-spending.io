@@ -67,11 +67,7 @@
                     drawSheetName('HealthPercChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K', HealthPercChangeRH);
                     drawSheetName('EduPercChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K', EduPercChangeRH);
                     drawSheetName('MilitaryPercChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K', MilPercChangeRH);
-                    drawSheetName('AllSpending15', 'SELECT A,B,C,D', AllSpending15RH);
-                    drawSheetName('AllSpending16', 'SELECT A,B,C,D', AllSpending16RH);
-                    drawSheetName('AllSpending17', 'SELECT A,B,C,D', AllSpending17RH);
-                    drawSheetName('AllSpending18', 'SELECT A,B,C,D', AllSpending18RH);
-                    drawSheetName('AllSpending19', 'SELECT A,B,C,D', AllSpending19RH);
+                    drawSheetName('AverageSpending', 'SELECT A,B,C,D', AverageSpendingRH);
                     drawSheetName('AveragePercGDP', 'SELECT A,B,C,D', AllPercGDPRH);
                     drawSheetName('PercChange15.19', 'SELECT A,B,C,D', AllPercChange15_19RH);
 
@@ -109,7 +105,7 @@
                 function HealthResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 1, desc: true});
+                    data.sort({column: 1, desc: false});
 
                     var options = {
                         title: 'Healthcare Expenditure by Country in Billions (Current USD)',
@@ -126,7 +122,7 @@
                 function EduResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Education Expenditure by Country in Billions (Current USD)',
@@ -143,7 +139,7 @@
                 function MilResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Military Expenditure by Country in Billions (Current USD)',
@@ -214,7 +210,7 @@
                 function HealthPerCap15RH(response){
                     checkError(response);
                     var data15 = response.getDataTable();
-                    data15.sort({column: 0, desc: true});
+                    data15.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
@@ -232,7 +228,7 @@
                 function HealthPerCap16RH(response){
                     checkError(response);
                     var data16 = response.getDataTable();
-                    data16.sort({column: 0, desc: true});
+                    data16.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
@@ -249,7 +245,7 @@
                 function HealthPerCap17RH(response){
                     checkError(response);
                     var data17 = response.getDataTable();
-                    data17.sort({column: 0, desc: true}); 
+                    data17.sort({column: 0, desc: false}); 
                     
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2017 vs. GDP Per Capita 2017',
@@ -266,7 +262,7 @@
                 function HealthPerCap18RH(response){
                     checkError(response);
                     var data18 = response.getDataTable();
-                    data18.sort({column: 0, desc: true});
+                    data18.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
@@ -284,7 +280,7 @@
                 function HealthPerCap19RH(response){
                     checkError(response);
                     var data19 = response.getDataTable();
-                    data19.sort({column: 0, desc: true});
+                    data19.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Healthcare Expenditure Per Capita 2019 vs. GDP Per Capita 2019',
@@ -302,7 +298,7 @@
                 function EduPerCap15RH(response){
                     checkError(response);
                     var data15 = response.getDataTable();
-                    data15.sort({column: 0, desc: true});
+                    data15.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Education Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
@@ -320,7 +316,7 @@
                 function EduPerCap16RH(response){
                     checkError(response);
                     var data16 = response.getDataTable();
-                    data16.sort({column: 0, desc: true});
+                    data16.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Education Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
@@ -338,7 +334,7 @@
                 function EduPerCap17RH(response){
                     checkError(response);
                     var data17 = response.getDataTable();
-                    data17.sort({column: 0, desc: true});
+                    data17.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Education Expenditure Per Capita 2017 vs. GDP Per Capita 2017',
@@ -356,7 +352,7 @@
                 function EduPerCap18RH(response){
                     checkError(response);
                     var data18 = response.getDataTable();
-                    data18.sort({column: 0, desc: true});
+                    data18.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Education Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
@@ -374,7 +370,7 @@
                 function EduPerCap19RH(response){
                     checkError(response);
                     var data19 = response.getDataTable();
-                    data19.sort({column: 0, desc: true});
+                    data19.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Education Expenditure Per Capita 2019 vs. GDP Per Capita 2019',
@@ -392,7 +388,7 @@
                 function MilPerCap15RH(response){
                     checkError(response);
                     var data15 = response.getDataTable();
-                    data15.sort({column: 0, desc: true});
+                    data15.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Military Expenditure Per Capita 2015 vs. GDP Per Capita 2015',
@@ -410,7 +406,7 @@
                 function MilPerCap16RH(response){
                     checkError(response);
                     var data16 = response.getDataTable();
-                    data16.sort({column: 0, desc: true});
+                    data16.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Military Expenditure Per Capita 2016 vs. GDP Per Capita 2016',
@@ -428,7 +424,7 @@
                 function MilPerCap17RH(response){
                     checkError(response);
                     var data17 = response.getDataTable();
-                    data17.sort({column: 0, desc: true});
+                    data17.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Military Expenditure Per Capita 2017 vs. GDP Per Capita 2017',
@@ -446,7 +442,7 @@
                 function MilPerCap18RH(response){
                     checkError(response);
                     var data18 = response.getDataTable();
-                    data18.sort({column: 0, desc: true});
+                    data18.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Military Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
@@ -464,7 +460,7 @@
                 function MilPerCap19RH(response){
                     checkError(response);
                     var data19 = response.getDataTable();
-                    data19.sort({column: 0, desc: true});
+                    data19.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Military Expenditure Per Capita 2019 vs. GDP Per Capita 2019',
@@ -482,7 +478,7 @@
                 function HealthChange15_16RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Healthcare Expenditure between 2015 and 2016',
@@ -500,7 +496,7 @@
                 function HealthChange16_17RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Healthcare Expenditure between 2016 and 2017',
@@ -518,7 +514,7 @@
                 function HealthChange17_18RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Healthcare Expenditure between 2017 and 2018',
@@ -536,7 +532,7 @@
                 function HealthChange18_19RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Healthcare Expenditure between 2018 and 2019',
@@ -554,7 +550,7 @@
                 function HealthChange15_19RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Healthcare Expenditure between 2015 and 2019',
@@ -572,7 +568,7 @@
                 function EduChange15_16RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Education Expenditure between 2015 and 2016',
@@ -590,7 +586,7 @@
                 function EduChange16_17RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Education Expenditure between 2016 and 2017',
@@ -608,7 +604,7 @@
                 function EduChange17_18RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Education Expenditure between 2017 and 2018',
@@ -626,7 +622,7 @@
                 function EduChange18_19RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Education Expenditure between 2018 and 2019',
@@ -644,7 +640,7 @@
                 function EduChange15_19RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Education Expenditure between 2015 and 2019',
@@ -662,7 +658,7 @@
                 function MilChange15_16RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Military Expenditure between 2015 and 2016',
@@ -680,7 +676,7 @@
                 function MilChange16_17RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Military Expenditure between 2016 and 2017',
@@ -698,7 +694,7 @@
                 function MilChange17_18RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Military Expenditure between 2017 and 2018',
@@ -716,7 +712,7 @@
                 function MilChange18_19RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Military Expenditure between 2018 and 2019',
@@ -734,7 +730,7 @@
                 function MilChange15_19RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Absolute Change in Military Expenditure between 2015 and 2019',
@@ -802,89 +798,20 @@
 
                 };//MilPercChangeRH
 
-
-                //Overall Healthcare, Education, and Military Spending in 2015:
-                function AllSpending15RH(response){
+                //Average of Healthcare, Education, and Military Spending from 2015 to 2019:
+                function AverageSpendingRH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
-                        title: 'Overall Healthcare, Education, and Military Spending in 2015',
+                        title: 'Average of Overall Healthcare, Education, and Military Spending from 2015 to 2019',
                         titleTextStyle: {fontSize: 18},
                         vAxis: {title: 'Governmental Spending in Billions of Current USD', format: 'currency'},
                         hAxis: {title: 'Country'},
                 };
 
-                    var chart = new google.visualization.ColumnChart(document.getElementById('all_spending_15_div'));
-                    chart.draw(data, options);
-                } //AllSpending15RH      
-                
-                //Overall Healthcare, Education, and Military Spending in 2016:
-                function AllSpending16RH(response){
-                    checkError(response);
-                    var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
-
-                    var options = {
-                        title: 'Overall Healthcare, Education, and Military Spending in 2016',
-                        titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Governmental Spending in Billions of Current USD', format: 'currency'},
-                        hAxis: {title: 'Country'},
-                };
-
-                    var chart = new google.visualization.ColumnChart(document.getElementById('all_spending_16_div'));
-                    chart.draw(data, options);
-                } //AllSpending16RH    
-
-                //Overall Healthcare, Education, and Military Spending in 2017:
-                function AllSpending17RH(response){
-                    checkError(response);
-                    var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
-
-                    var options = {
-                        title: 'Overall Healthcare, Education, and Military Spending in 2017',
-                        titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Governmental Spending in Billions of Current USD', format: 'currency'},
-                        hAxis: {title: 'Country'},
-                };
-
-                    var chart = new google.visualization.ColumnChart(document.getElementById('all_spending_17_div'));
-                    chart.draw(data, options);
-                } //AllSpending17RH 
-
-                //Overall Healthcare, Education, and Military Spending in 2018:
-                function AllSpending18RH(response){
-                    checkError(response);
-                    var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
-
-                    var options = {
-                        title: 'Overall Healthcare, Education, and Military Spending in 2018',
-                        titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Governmental Spending in Billions of Current USD', format: 'currency'},
-                        hAxis: {title: 'Country'},
-                };
-
-                    var chart = new google.visualization.ColumnChart(document.getElementById('all_spending_18_div'));
-                    chart.draw(data, options);
-                } //AllSpending18RH 
-
-                //Overall Healthcare, Education, and Military Spending in 2019:
-                function AllSpending19RH(response){
-                    checkError(response);
-                    var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
-
-                    var options = {
-                        title: 'Overall Healthcare, Education, and Military Spending in 2019',
-                        titleTextStyle: {fontSize: 18},
-                        vAxis: {title: 'Governmental Spending in Billions of Current USD', format: 'currency'},
-                        hAxis: {title: 'Country'},
-                };
-
-                    var chart = new google.visualization.ColumnChart(document.getElementById('all_spending_19_div'));
+                    var chart = new google.visualization.ColumnChart(document.getElementById('average_spending_div'));
                     chart.draw(data, options);
                 } //AllSpending19RH                 
 
@@ -892,7 +819,7 @@
                 function AllPercGDPRH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Average Percent of GDP Spent on Healthcare, Education and Military Spending from 2015 to 2019',
@@ -912,7 +839,7 @@
                 function AllPercChange15_19RH(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
+                    data.sort({column: 0, desc: false});
 
                     var options = {
                         title: 'Percent Change in Governmental Expenditures from 2015 to 2019',
@@ -987,7 +914,7 @@
                             <a href="http://data.uis.unesco.org/">(UNESCO).</a> 
                         </p>
                         <br>
-                        <p class="text-muted"> <i>Note: </i>  Educational spending data was not available for Canada, China, and Saudi Arabia. Years with missing data 
+                        <p class="text-muted"> <i>Note: </i>  Spending data on education was not available for Canada, China, and Saudi Arabia. Years with missing data 
                             were calculated by taking the average change in spending year over year from 2011 - 2017 and adding it to the total spending from the 
                             previous year.</p>
                     </div>
@@ -1158,22 +1085,18 @@
                     <h3 class="section-subheading text-muted">Comparing health, education and military spending.</h3>
                 </div>
                 <br>
-                <div class="text-center" id="all_spending_15_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center" id="all_spending_16_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center" id="all_spending_17_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center" id="all_spending_18_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center" id="all_spending_19_div" style="width: 900px; height: 500px;"></div>
-                <br>
+                <div class="text-center" id="average_spending_div" style="width: 900px; height: 500px;"></div>
                 <br>
                 <br>
                 <div class="text-center" id="all_perc_gdp_div" style="width: 900px; height: 500px;"></div>
                 <br>
                 <br>
                 <div class="text-center" id="all_perc_change_15_19_div" style="width: 900px; height: 500px;"></div>
+                <br>
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Key Findings and Learning Process</h2>
+                    <h3 class="section-subheading text-muted">Comparing health, education and military spending.</h3>
+                </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
                 </div>
