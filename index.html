@@ -67,11 +67,7 @@
                     drawSheetName('HealthPercChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K', HealthPercChangeRH);
                     drawSheetName('EduPercChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K', EduPercChangeRH);
                     drawSheetName('MilitaryPercChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K', MilPercChangeRH);
-                    drawSheetName('PercGDP15', 'SELECT A,B,C,D', PercGDP15RH);
-                    drawSheetName('PercGDP16', 'SELECT A,B,C,D', PercGDP16RH);
-                    drawSheetName('PercGDP17', 'SELECT A,B,C,D', PercGDP17RH);
-                    drawSheetName('PercGDP18', 'SELECT A,B,C,D', PercGDP18RH);
-                    drawSheetName('PercGDP19', 'SELECT A,B,C,D', PercGDP19RH);
+                    drawSheetName('AveragePercGDP', 'SELECT A,B,C,D', PercGDPRH);
                     drawSheetName('PercChange15.19', 'SELECT A,B,C,D', HEMPercChange15_19RH);
 
                 } ///drawAllSheets
@@ -801,105 +797,25 @@
 
                 };//MilPercChangeRH
 
-                //Comparison of Percent of GDP on Health, Education and Military Spending in 2015:
-                function PercGDP15RH(response){
+                //Comparison of Percent of GDP on Health, Education and Military Spending:
+                function PercGDPRH(response){
                     checkError(response);
                     var data = response.getDataTable();
                     data.sort({column: 0, desc: true});
 
                     var options = {
-                        title: 'Percent of GDP Spent on Healthcare, Education and Military Spending in 2015',
+                        title: 'Average Percent of GDP Spent on Healthcare, Education and Military Spending from 2015 to 2019',
                         titleTextStyle: {fontSize: 18},
                         legend: {position: 'top', maxLines: 1},
                         bar: {groupWidth: '75%'},
                         isStacked: true,
                         vAxis: {title: 'Country'},
-                        hAxis: {title: 'Percent of GDP Spent on Healthcare, Education and Military Spending', format: 'percent'},
+                        hAxis: {title: 'Average Percent of GDP Spent on Healthcare, Education and Military Spending', format: 'percent'},
                     };
 
-                    var chart = new google.visualization.BarChart(document.getElementById('hem_perc_gdp_15_div'));
+                    var chart = new google.visualization.BarChart(document.getElementById('hem_perc_gdp_div'));
                     chart.draw(data, options);
-                } //PercGDP15RH
-
-                //Comparison of Percent of GDP on Health, Education and Military Spending in 2016:
-                function PercGDP16RH(response){
-                    checkError(response);
-                    var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
-
-                    var options = {
-                        title: 'Percent of GDP Spent on Healthcare, Education and Military Spending in 2016',
-                        titleTextStyle: {fontSize: 18},
-                        legend: {position: 'top', maxLines: 1},
-                        bar: {groupWidth: '75%'},
-                        isStacked: true,
-                        vAxis: {title: 'Country'},
-                        hAxis: {title: 'Percent of GDP Spent on Healthcare, Education and Military Spending', format: 'percent'},
-                    };
-
-                    var chart = new google.visualization.BarChart(document.getElementById('hem_perc_gdp_16_div'));
-                    chart.draw(data, options);
-                } //PercGDP16RH
-
-                //Comparison of Percent of GDP on Health, Education and Military Spending in 2017:
-                function PercGDP17RH(response){
-                    checkError(response);
-                    var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
-
-                    var options = {
-                        title: 'Percent of GDP Spent on Healthcare, Education and Military Spending in 2017',
-                        titleTextStyle: {fontSize: 18},
-                        legend: {position: 'top', maxLines: 1},
-                        bar: {groupWidth: '75%'},
-                        isStacked: true,
-                        vAxis: {title: 'Country'},
-                        hAxis: {title: 'Percent of GDP Spent on Healthcare, Education and Military Spending', format: 'percent'},
-                    };
-
-                    var chart = new google.visualization.BarChart(document.getElementById('hem_perc_gdp_17_div'));
-                    chart.draw(data, options);
-                } //PercGDP17RH
-
-                //Comparison of Percent of GDP on Health, Education and Military Spending in 2018:
-                function PercGDP18RH(response){
-                    checkError(response);
-                    var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
-
-                    var options = {
-                        title: 'Percent of GDP Spent on Healthcare, Education and Military Spending in 2018',
-                        titleTextStyle: {fontSize: 18},
-                        legend: {position: 'top', maxLines: 1},
-                        bar: {groupWidth: '75%'},
-                        isStacked: true,
-                        vAxis: {title: 'Country'},
-                        hAxis: {title: 'Percent of GDP Spent on Healthcare, Education and Military Spending', format: 'percent'},
-                    };
-
-                    var chart = new google.visualization.BarChart(document.getElementById('hem_perc_gdp_18_div'));
-                    chart.draw(data, options);
-                } //PercGDP18RH                
-
-                //Comparison of Percent of GDP on Health, Education and Military Spending in 2019:
-                function PercGDP19RH(response){
-                    checkError(response);
-                    var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
-
-                    var options = {
-                        title: 'Percent of GDP Spent on Healthcare, Education and Military Spending in 2019',
-                        titleTextStyle: {fontSize: 18},
-                        legend: {position: 'top', maxLines: 1},
-                        bar: {groupWidth: '75%'},
-                        isStacked: true,
-                        vAxis: {title: 'Country'},
-                        hAxis: {title: 'Percent of GDP Spent on Healthcare, Education and Military Spending', format: 'percent'},
-                    };
-
-                    var chart = new google.visualization.BarChart(document.getElementById('hem_perc_gdp_19_div'));
-                    chart.draw(data, options);
-                } //PercGDP19RH
+                } //PercGDPRH
 
                 //Comparison of Percent Change in Expenditures 2015 to 2019:
                 function HEMPercChange15_19RH(response){
@@ -1151,16 +1067,7 @@
                     <h3 class="section-subheading text-muted">Comparing health, education and military spending.</h3>
                 </div>
                 <br>
-                <div class="text-center" id="hem_perc_gdp_15_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center" id="hem_perc_gdp_16_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center" id="hem_perc_gdp_17_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center" id="hem_perc_gdp_18_div" style="width: 900px; height: 500px;"></div>
-                <br>
-                <div class="text-center" id="hem_perc_gdp_19_div" style="width: 900px; height: 500px;"></div>
-                <br>
+                <div class="text-center" id="hem_perc_gdp_div" style="width: 900px; height: 500px;"></div>
                 <br>
                 <br>
                 <div class="text-center" id="hem_perc_change_15_19_div" style="width: 900px; height: 500px;"></div>
