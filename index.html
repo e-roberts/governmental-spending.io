@@ -23,6 +23,7 @@
             
             <!-- Google Visualization Charts-->
             <script>
+                //Loading data and creating response handlers for each sheet
                  google.charts.load('current', {'packages':['corechart', 'geochart'],
                 'mapsApiKey': 'AIzaSyD51kMFDNPRa9X44IOOnt7qT2aLAy6SGBo'});
                 google.charts.setOnLoadCallback(drawAllSheets); 
@@ -93,7 +94,6 @@
                 function CountriesResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
 
                     var options = {defaultColor: '#fed136'};
                     var chart = new google.visualization.GeoChart(document.getElementById('countries_div'));
@@ -171,7 +171,6 @@
                 function EduPercentGDPResponseHandler(response){
                     checkError(response);
                     var data = response.getDataTable();
-                    data.sort({column: 0, desc: true});
 
                     var options = {
                         title: 'Education Expenditure as a Percent of GDP by Country',
@@ -426,7 +425,7 @@
                 function MilPerCap18RH(response){
                     checkError(response);
                     var data18 = response.getDataTable();
-                    
+
                     var options = {
                         title: 'Military Expenditure Per Capita 2018 vs. GDP Per Capita 2018',
                         titleTextStyle: {fontSize: 18},
@@ -839,6 +838,7 @@
                 </div>
             </div>
         </nav>
+
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
@@ -847,14 +847,25 @@
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#data">Show Me More</a>
             </div>
         </header>
+
         <!-- Data -->
         <section class="page-section" id="data">
             <div class="container">
                 <div class="text-center">
+                    <h4 class="section-heading text-uppercase">Introduction</h4>
+                    <p class="text-muted">It is the responsibility of any government to serve its people by providing funding for social programs as well as protect its people from harm.
+                         However, each country allocates its budget differently, according to its priorities and the needs of the nation. In 2015, the United Nations 
+                         member states met to reevaluate the Millennium Development Goals, ultimately creating Sustainable Development Goals to be achieved by 2030. 
+                         These 17 goals provide “a shared blueprint for peace and prosperity for people and the planet, now and into the future.” 
+                        <a href="https://sdgs.un.org/goals">1</a> With these goals in mind, this project will examine how 10 of the G20 countries have allocated 
+                        spending towards healthcare, education, and the military from 2015 to 2019 as a proxy measure towards progress on these goals. </p>
+                    </h3>
+                    <br>
+                    <br>
                     <h2 class="section-heading text-uppercase">Data</h2>
                     <h3 class="section-subheading text-muted">Full dataset used for this analysis can be accessed 
                         <a href="https://drive.google.com/file/d/11fINxyUR_8jFfbWUAsUOIP3AmcPm62pH/view?usp=sharing">here.</a>
-                    </h3>
+                    <br>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -901,6 +912,7 @@
 
             </div>
         </section>
+
         <!-- Health Spending-->
         <section class="page-section bg-light" id="health">
             <div class="container">
@@ -946,8 +958,8 @@
             <br>
             <br>
             <div class="text-center" id="health_perc_change_div" style="width: 900px; height: 500px;"></div>            
-
         </section> 
+
         <!-- Education Spending -->
         <section class="page-section" id="education">
             <div class="container">
@@ -995,6 +1007,7 @@
             <div class="text-center" id="edu_perc_change_div" style="width: 900px; height: 500px;"></div>
         </div>
         </section>
+
         <!-- Military Spending -->
         <section class="page-section bg-light" id="military">
             <div class="container">
@@ -1041,6 +1054,7 @@
                 <br>
                 <div class="text-center" id="mil_perc_change_div" style="width: 900px; height: 500px;"></div>
         </section>
+
         <!-- Comparative Analysis -->
         <section class="page-section" id="analysis">
             <div class="container">
@@ -1058,11 +1072,24 @@
                 <div class="text-center" id="all_perc_change_15_19_div" style="width: 900px; height: 500px;"></div>
                 <br>
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Key Findings and Learning Process</h2>
-                    <h3 class="section-subheading text-muted">Comparing health, education and military spending.</h3>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+                    <h4 class="section-heading text-uppercase">Key Findings</h4>
+                    <p class="text-muted">When it comes to overall spending on healthcare, the spending of the rest of the countries in our analysis are dwarfed in comparison to the United States. No other country in our sample has even come close to passing the one trillion-dollar mark, while the United States has spent well over $3 trillion every year since 2015. When expressed as a percent of GDP, the US maintains its dominance as the biggest spender on healthcare, spending approximately 17% of its GDP on health. Meanwhile, China’s spending on healthcare, while the second highest of the group overall, has hovered around 5% of GDP each year for the last five years. Next, I sought to compare healthcare expenditure per capita and GDP per capita to see if there were any significant relationships. Year over year, I found that there is a strong, positive, linear relationship between healthcare expenditure per capita and GDP per capita for all five years examined, with Australia as a potential outlier. To find which country was moving towards achieving Sustainable Development Goal 3 the fastest, I examined the absolute change in healthcare expenditure between each year. While most countries in the analysis increased spending in one year only to decrease spending the next, the US and China consistently increased their spending on healthcare every year by the largest amounts. When comparing the absolute change in healthcare expenditure from 2015 to 2019, the United States and China increased spending the most, while Argentina, Australia, and the UK all decreased healthcare expenditures. Over the last five years, the US, China, and Canada are the only three countries in our cohort who consistently experienced positive growth year over year. Interestingly, the largest percent change for all the countries occurred between 2016 and 2017, with Saudi Arabia increasing its spending by 28.14%, with Argentina and Russia close behind with jumps of 27.73% and 25.14%, respectively. While these countries did have dramatic increases in expenditures, they also experienced dramatic decreases in the last five years. Therefore, I believe that China is the fastest growing country in terms of healthcare expenditures.</p>
+                    <br>
+                    <p class="text-muted">The United States also spends the most money annually on education than any other country in our analysis. The US spends three times more every year than the second highest country, France. While recent data on Canada, China, and Saudi Arabia were not publicly available for comparison, it is likely that annual education expenditures in the United States would still be the largest. Looking at education expenditure as a percent of GDP, however, France experienced a steady increase in education spending, allocating 7% of its GDP towards education in 2019. This annual increase in spending in France can also be seen clearly when comparing education expenditure per capita to GDP per capita year over year. While most countries hover well below the $10K per capita mark each year, France and the US steadily increase education spending year over year as GDP per capita also steadily increases. Unlike in healthcare spending, there is very little evidence of a linear relationship between education expenditure per capita and GDP per capita in the last five years. France’s rapid increase in education spending is most evident when examining the absolute change in education expenditures year over year, even surpassing the increase in spending by the US some years. However, Russia surprisingly increased by the largest margin in percent change in education expenditure from 2016 to 2017, with an increase of 53% that year. Based on France’s consistent, significant growth in education expenditures each year for the last five years, I contend that it is the fasted growing country in educational spending.</p>
+                    <br>
+                    <p class="text-muted">Finally, the United States also spends more than any other country in our cohort on military expenditures each year over the last five years than all the other countries in our cohort. The US spends three times more than the second highest spending country, China. However, analyzing military spending as a percent of GDP tells a different story. While the US spends a little over 3% of its GDP annually on military expenditures, both Russia and Saudi Arabia spent at higher rates every year, with Saudi Arabia spending 13% of its GDP on the military in 2015. Likewise, when analyzing military expenditure per capita vs GDP per capita, Saudi Arabia is the only country that surpasses per capita spending on the military of the United States, in 2015, 2017, and 2018. Similar to our analysis on education expenditures, there is no clear linear relationship between military expenditure per capita and GDP per capita. While many countries experienced fluctuations in absolute change in military expenditure year over year, the United States experienced the largest, most consistent growth in the last five years, followed by China. Interestingly, Canada and Argentina experienced the largest spikes in percent change in military spending from 2016 to 2017, increasing spending by 25% and 21%, respectively.</p>
+                    <br>
+                    <br>
+                    <h4 class="section-heading text-uppercase">Learning Process</h4>
+                    <p class="text-muted">My learning process for this project was incredibly iterative, as I continually went back to code I had previously written to make small changes when I learned more information or when an error popped up. Initially I struggled by having too many windows opened in Visual Studio Code, which caused confusion and connection errors. I also had issues finding and manipulating data, as reporting was sporadic based on the country, and some countries simply had no data whatsoever. Manipulating the datasets in Excel made the process slightly easier but created lots of room for little errors to find their way into the data. It was also a bit of an adjustment to have to manipulate the data in the spreadsheet to fit the chart, rather than changing the settings in the chart to fit the data. Initially I wanted to create a drop-down menu to be able to page through years of data in a chart, but after two full days of attempting several different methods, I was never able to get the code to work properly. I intentionally chose a bootstrap template that has all the sections on one page for clearer storytelling, however, this causes the page to take an exceptionally long time to load and ultimately causes errors. For my next project, I will not choose to do a one-page bootstrap template to hopefully prevent these issues from occurring.</p>
+                    <br>
+                    <br>
+                    <h4 class="section-heading text-uppercase">Conclusion</h4>
+                    <p class="text-muted">As is evident from this analysis, when comparing governmental spending on healthcare, education, and the military, the United States spends the most overall out of all 10 countries in our analysis. Of these three expenditures, the US spends the most on average on education, followed by healthcare. Averaging expenditures over the last five years, France spent more on education than the US spent on the military and is the only country to spend more on average than the United States in any category. On average, every country in our analysis spends the highest percentage of its GDP on healthcare, with the exception of Saudi Arabia. Cumulatively, it is somewhat unsurprising to see that the US spend the highest cumulative percent of its GDP on healthcare, education, and the military than any of the other countries selected. Lastly, when examining the percent change in governmental expenditures from 2015 to 2019, we can see that France had a dramatic 122% increase in spending in on education in the last five years, the largest increase of any country in any category by far. The second highest increase is China with an increase of 45% in healthcare spending from 2015 to 2019. Additionally, Argentina and Saudi Arabia both dramatically decreased their spending on the military in the last five years by 42% and 29%, respectively. Intriguingly, the United Kingdom is the only country to have decreased its spending in all measures over the last five years.</p>
+                    <br>
+                    <p class="text-muted">One interesting finding from this analysis was, while the United States and China increased spending the most from 2015 to 2019, while Argentina, Australia, and the UK all decreased healthcare expenditures. Considering that each of these three countries have some form of socialized medicine or universal public health insurance program, it is interesting that these countries have decreased spending over the last five years given the government’s increased responsibility towards its citizens. It would be interesting to analyze whether the decreased expenditures are correlated with the increased access to healthcare, as it tends to provide greater health outcomes for its citizens. With the world experiencing a global pandemic beginning in the end of 2019, I predict that the healthcare spending of every country in this analysis increased in 2020. Likewise, I project that education spending by every country will also increase due to the impacts of the global pandemic, which classrooms and schools needing to update infrastructure and ventilation systems to provide a safe learning environment for students. While some countries may experience a decrease in military spending in 2020 given the pandemic, it is likely that the US will have increased military expenditures in 2020 given the recent creation of a new branch of the military, the Space Force. Additionally, it is likely that China experienced another increase in military spending in 2020, given the government’s recent detention of the ethnic Uighurs and Muslims into internment camps in Xinjiang.</p>
+                    <br>
+                    <p class="text-muted">In the context of the Sustainable Development Goals, many countries are successfully working towards increasing their funding towards healthcare to meet goal 3 of ensuring good health and wellbeing. However, government expenditure is not the only indicator of investment in good health outcomes, and more needs to be done by every country to improve the wellbeing of every citizen. As the world recovers from the global pandemic, there are many uncertainties about the long-term effects of the virus, and countries need to continue to invest in healthcare infrastructure to make sure we achieve this goal. Every country in our cohort, except for Australia and the UK increased their spending in education since the creation of the Sustainable Development goal 4 in 2015. Increasing investments in quality education is a vitally important toward creating a more equitable and sustainable world, and France has made the largest investment in this space of any of the selected countries in the last five years. Sustainable Development Goal 16 works towards promoting a more peaceful society, and military spending directly contradicts this goal. In the last five years, only Argentina, the UK, Russia, and Saudi Arabia have made progress in reducing military expenditures, if only marginally. The process of creating a more collaborative, sustainable world necessitates a reduction in military spending, and many of the countries in our analysis have a long way to go towards making progress on this goal. </p>
                 </div>
             </div>
         </section>
